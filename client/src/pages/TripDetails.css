@@ -1,0 +1,750 @@
+
+/* ========================================
+   VOYAGO — TRIP DETAILS
+   Light + Dark Theme Support
+======================================== */
+
+.trip-details-page {
+    min-height: 100vh;
+    padding-bottom: 80px;
+    background: var(--bg);
+    color: var(--text);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* HERO */
+
+.trip-hero {
+    padding: 55px 7% 42px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.trip-hero-content {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.trip-title-section {
+    margin-bottom: 35px;
+}
+
+.trip-label,
+.section-kicker {
+    display: inline-block;
+    margin-bottom: 9px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.7px;
+}
+
+.trip-title-section h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.1;
+    font-weight: 800;
+    letter-spacing: -2px;
+    overflow-wrap: anywhere;
+}
+
+.trip-subtitle {
+    margin: 13px 0 0;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* TRIP INFORMATION */
+
+.trip-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.trip-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    min-width: 0;
+    padding: 18px;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
+
+.info-icon {
+    flex-shrink: 0;
+    font-size: 21px;
+    line-height: 1;
+}
+
+.info-label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+}
+
+.trip-info-item strong {
+    display: block;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.interest-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.interest-tag {
+    padding: 4px 9px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* GENERAL SECTIONS */
+
+.map-section,
+.itinerary-section,
+.recommendation-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 55px 7% 0;
+}
+
+.section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 25px;
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    margin: 0;
+    color: var(--text);
+    font-size: 30px;
+    letter-spacing: -0.7px;
+}
+
+.section-heading p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* MAP CARD */
+
+.map-card {
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px var(--shadow);
+}
+
+/* DAY SELECTOR */
+
+.map-day-selector {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 14px 18px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.map-day-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+    padding-right: 16px;
+    border-right: 1px solid var(--border);
+}
+
+.map-day-title span {
+    color: var(--muted);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.map-day-title strong {
+    color: var(--text);
+    font-size: 16px;
+}
+
+.day-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.day-buttons::-webkit-scrollbar {
+    display: none;
+}
+
+.day-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex-shrink: 0;
+    min-width: 82px;
+    height: 38px;
+    padding: 0 12px;
+    background: var(--surface-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.day-button:hover {
+    border-color: #3b82f6;
+}
+
+.day-button.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.day-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 21px;
+    flex-shrink: 0;
+    background: var(--border);
+    color: var(--text);
+    border-radius: 50%;
+    font-size: 10px;
+}
+
+.day-button.active .day-number {
+    background: #ffffff;
+    color: #1d4ed8;
+}
+
+.day-text {
+    white-space: nowrap;
+}
+
+/* MAP CONTAINER */
+
+.trip-map-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 550px;
+}
+
+.trip-map-wrapper > * {
+    width: 100%;
+}
+
+/* Keep Leaflet map controls readable in either theme */
+.trip-map-wrapper .leaflet-control,
+.trip-map-wrapper .leaflet-bar {
+    color: #222222;
+}
+
+.trip-map-wrapper .leaflet-control a {
+    color: #222222;
+}
+
+/* EMPTY STATES */
+
+.empty-map-state,
+.empty-itinerary,
+.empty-recommendations {
+    padding: 55px 25px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px dashed var(--border);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.empty-icon {
+    margin-bottom: 12px;
+    font-size: 42px;
+}
+
+.empty-map-state h3,
+.empty-itinerary h3 {
+    margin: 0 0 8px;
+    color: var(--text);
+    font-size: 20px;
+}
+
+.empty-map-state p,
+.empty-itinerary p {
+    max-width: 500px;
+    margin: 0 auto 20px;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* ITINERARY */
+
+.itinerary-heading {
+    align-items: center;
+}
+
+.generate-button {
+    flex-shrink: 0;
+    padding: 12px 18px;
+    background: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+}
+
+.generate-button:hover:not(:disabled) {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.generate-button:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.generate-button.large {
+    padding: 13px 22px;
+}
+
+.itinerary-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.day-card {
+    overflow: hidden;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 4px 18px var(--shadow);
+}
+
+.day-card-header {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+}
+
+.day-badge {
+    flex-shrink: 0;
+    padding: 8px 11px;
+    background: var(--text);
+    color: var(--bg);
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.day-title-wrapper h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+.day-title-wrapper p {
+    margin: 4px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.activity-list {
+    padding: 8px 24px 18px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 31px;
+    height: 31px;
+    background: var(--surface-secondary);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.activity-content {
+    min-width: 0;
+}
+
+.activity-content h4 {
+    margin: 2px 0 5px;
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.activity-content p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+/* RECOMMENDATIONS */
+
+.recommendation-section {
+    padding-top: 65px;
+}
+
+.recommendation-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.recommendation-card {
+    display: flex;
+    gap: 15px;
+    min-width: 0;
+    padding: 21px;
+    background: var(--surface);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-light);
+    box-shadow: 0 8px 25px var(--shadow);
+}
+
+.recommendation-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 43px;
+    height: 43px;
+    background: var(--surface-secondary);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 21px;
+}
+
+.recommendation-content {
+    min-width: 0;
+}
+
+.recommendation-type {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1.1px;
+}
+
+.recommendation-content h3 {
+    margin: 0 0 7px;
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.recommendation-content p {
+    margin: 0 0 9px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.recommendation-location,
+.recommendation-price,
+.recommendation-cuisine {
+    display: inline-block;
+    margin-top: 3px;
+    margin-right: 7px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* LOADING */
+
+.trip-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    background: var(--bg);
+    color: var(--muted);
+}
+
+.loading-spinner {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 15px;
+    border: 3px solid var(--border);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: trip-details-spin 0.8s linear infinite;
+}
+
+@keyframes trip-details-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ERROR */
+
+.trip-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 30px;
+    background: var(--bg);
+    color: var(--text);
+    text-align: center;
+}
+
+.trip-error h2 {
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.trip-error p {
+    margin-bottom: 20px;
+    color: var(--muted);
+}
+
+.trip-error button {
+    padding: 11px 20px;
+    background: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.trip-inline-error {
+    max-width: 1400px;
+    margin: 20px auto -20px;
+    padding: 12px 18px;
+    background: var(--surface);
+    color: #dc2626;
+    border: 1px solid #ef4444;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+/* ACCESSIBILITY */
+
+.day-button:focus-visible,
+.generate-button:focus-visible,
+.trip-error button:focus-visible {
+    outline: 3px solid #60a5fa;
+    outline-offset: 3px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+    .trip-info-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .recommendation-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .trip-hero {
+        padding: 40px 20px 30px;
+    }
+
+    .map-section,
+    .itinerary-section,
+    .recommendation-section {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .trip-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-title-section h1 {
+        font-size: 40px;
+        letter-spacing: -1.3px;
+    }
+
+    .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .section-heading h2 {
+        font-size: 26px;
+    }
+
+    .map-day-selector {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 11px;
+    }
+
+    .map-day-title {
+        width: 100%;
+        padding-right: 0;
+        padding-bottom: 9px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .day-buttons {
+        width: 100%;
+    }
+
+    .day-button {
+        min-width: 76px;
+    }
+
+    .trip-map-wrapper {
+        min-height: 450px;
+    }
+
+    .recommendation-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .day-card-header {
+        align-items: flex-start;
+    }
+
+    .activity-list {
+        padding-right: 17px;
+        padding-left: 17px;
+    }
+
+    .itinerary-heading .generate-button {
+        align-self: flex-start;
+    }
+
+    .trip-inline-error {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .trip-title-section h1 {
+        font-size: 34px;
+    }
+
+    .trip-subtitle {
+        font-size: 14px;
+    }
+
+    .day-text {
+        display: none;
+    }
+
+    .day-button {
+        min-width: 42px;
+        padding: 0 8px;
+    }
+
+    .day-card-header {
+        gap: 12px;
+        padding: 18px;
+    }
+
+    .day-title-wrapper h3 {
+        font-size: 17px;
+    }
+
+    .recommendation-card {
+        padding: 17px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trip-details-page,
+    .day-button,
+    .recommendation-card,
+    .generate-button {
+        transition: none;
+    }
+
+    .recommendation-card:hover,
+    .generate-button:hover {
+        transform: none;
+    }
+
+    .loading-spinner {
+        animation-duration: 1.8s;
+    }
+}

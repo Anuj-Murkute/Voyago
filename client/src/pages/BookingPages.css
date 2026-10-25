@@ -1,0 +1,437 @@
+
+/* =========================================================
+   VOYAGO — SHARED BOOKING PAGES
+   Theme-aware styling for flights, hotels, trains, buses
+   and cruises.
+   Uses the variables from the global design system.
+   ========================================================= */
+
+.booking-page {
+    min-height: calc(100vh - 70px);
+    padding: 50px 7%;
+    background: var(--bg);
+    color: var(--text);
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Header */
+
+.booking-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 35px;
+    color: var(--text);
+}
+
+.booking-icon {
+    font-size: 48px;
+    flex-shrink: 0;
+}
+
+.booking-header h1 {
+    margin: 0;
+    color: var(--text);
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.booking-header p {
+    margin: 6px 0 0;
+    color: var(--muted);
+}
+
+/* Main booking card */
+
+.booking-card {
+    width: 100%;
+    max-width: 1100px;
+    padding: 30px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 8px 30px var(--shadow);
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.booking-card form {
+    width: 100%;
+    color: var(--text);
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+}
+
+/* Individual fields */
+
+.booking-field {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.booking-field label {
+    display: block;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+    padding: 12px;
+    color: var(--input-text);
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    transition:
+        color 0.25s ease,
+        background-color 0.25s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.booking-field input::placeholder,
+.booking-field textarea::placeholder {
+    color: var(--input-placeholder);
+    opacity: 1;
+}
+
+.booking-field input:focus,
+.booking-field select:focus,
+.booking-field textarea:focus {
+    color: var(--input-text);
+    background-color: var(--input-bg);
+    border-color: var(--muted);
+    box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+/* Date and number inputs */
+
+.booking-field input[type="date"],
+.booking-field input[type="datetime-local"],
+.booking-field input[type="number"] {
+    color: var(--input-text);
+    background-color: var(--input-bg);
+}
+
+.booking-field input[type="date"] {
+    color-scheme: inherit;
+}
+
+:root[data-theme="dark"] .booking-field input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+:root[data-theme="light"] .booking-field input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: none;
+    cursor: pointer;
+}
+
+/* Disabled fields */
+
+.booking-field input:disabled,
+.booking-field select:disabled,
+.booking-field textarea:disabled {
+    color: var(--muted);
+    background: var(--surface-secondary);
+    border-color: var(--border);
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+/* Dropdown options */
+
+.booking-field select option {
+    color: var(--text);
+    background: var(--surface);
+}
+
+/* Search button */
+
+.booking-search-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    margin-top: 25px;
+    padding: 13px 25px;
+    color: var(--button-text);
+    background: var(--button-bg);
+    border: 1px solid var(--button-bg);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.booking-search-button:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+}
+
+.booking-search-button:active {
+    transform: translateY(0);
+}
+
+.booking-search-button:focus-visible {
+    outline: 2px solid var(--muted);
+    outline-offset: 3px;
+}
+
+/* Empty / initial results state */
+
+.booking-empty {
+    width: 100%;
+    max-width: 1100px;
+    margin-top: 30px;
+    padding: 60px 30px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 4px 18px var(--shadow);
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.booking-empty-icon {
+    font-size: 55px;
+}
+
+.booking-empty h2 {
+    margin: 15px 0 8px;
+    color: var(--text);
+    font-size: 24px;
+}
+
+.booking-empty p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Shared booking section headings and summaries */
+
+.booking-page h1,
+.booking-page h2,
+.booking-page h3,
+.booking-page h4 {
+    color: var(--text);
+}
+
+.booking-page p,
+.booking-page .booking-description,
+.booking-page .booking-subtitle {
+    color: var(--muted);
+}
+
+/* Keep nested cards theme-aware */
+
+.booking-page .card,
+.booking-page .trip-card,
+.booking-page .hotel-card,
+.booking-page .train-card,
+.booking-page .bus-card,
+.booking-page .cruise-card,
+.booking-page .booking-result-card {
+    color: var(--text);
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+/* Responsive layouts */
+
+@media (max-width: 1000px) {
+    .booking-page {
+        padding: 40px 5%;
+    }
+
+    .booking-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .booking-page {
+        padding: 30px 20px;
+    }
+
+    .booking-header {
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .booking-icon {
+        font-size: 36px;
+    }
+
+    .booking-header h1 {
+        font-size: 27px;
+    }
+
+    .booking-header p {
+        font-size: 14px;
+    }
+
+    .booking-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 16px;
+    }
+
+    .booking-search-button {
+        width: 100%;
+    }
+
+    .booking-empty {
+        padding: 40px 20px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .booking-page *,
+    .booking-page *::before,
+    .booking-page *::after {
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* VOYAGO — Black Sapphire booking UI */
+.booking-page {
+    box-sizing: border-box;
+    padding: clamp(28px, 5vw, 58px) clamp(16px, 6vw, 88px) 72px;
+    background:
+        radial-gradient(ellipse at 88% 0%, rgba(49, 111, 246, 0.09), transparent 35%),
+        var(--bg);
+}
+
+.booking-header {
+    max-width: 1100px;
+    margin: 0 auto 30px;
+    gap: 20px;
+}
+
+.booking-header h1 {
+    font-size: clamp(28px, 3.5vw, 40px);
+    letter-spacing: -0.8px;
+}
+
+.booking-icon {
+    display: grid;
+    width: 62px;
+    height: 62px;
+    place-items: center;
+    font-size: 30px;
+    background: rgba(79, 140, 255, 0.12);
+    border: 1px solid rgba(79, 140, 255, 0.24);
+    border-radius: 18px;
+}
+
+.booking-card {
+    max-width: 1100px;
+    margin-inline: auto;
+    padding: clamp(18px, 3vw, 32px);
+    border-radius: 22px;
+    border-color: var(--border);
+}
+
+.booking-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.booking-field input,
+.booking-field select,
+.booking-field textarea {
+    box-sizing: border-box;
+    min-height: 48px;
+    border-radius: 11px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-field input:focus,
+.booking-field select:focus,
+.booking-field textarea:focus {
+    outline: none;
+    border-color: #4f8cff;
+    box-shadow: 0 0 0 3px rgba(79, 140, 255, 0.14);
+}
+
+.booking-search-button {
+    min-height: 48px;
+    padding: 13px 24px;
+    border: 1px solid #316ff6;
+    border-radius: 12px;
+    background: #316ff6;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.booking-search-button:hover {
+    background: #4f8cff;
+    transform: translateY(-1px);
+}
+
+.booking-empty {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    border: 1px dashed var(--border);
+    border-radius: 18px;
+    background: var(--surface);
+}
+
+@media (max-width: 850px) {
+    .booking-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .booking-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .booking-header {
+        align-items: flex-start;
+    }
+
+    .booking-icon {
+        width: 50px;
+        height: 50px;
+        flex-shrink: 0;
+    }
+}

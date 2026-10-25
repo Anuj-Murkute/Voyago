@@ -1,0 +1,472 @@
+
+/* =========================================
+   VOYAGO — BLACK SAPPHIRE NAVIGATION
+========================================= */
+
+.voyago-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  color: var(--text);
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.voyago-navbar,
+.voyago-navbar * {
+  box-sizing: border-box;
+}
+
+.voyago-navbar-inner {
+  width: min(100% - 48px, 1440px);
+  min-height: 74px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* BRAND */
+
+.voyago-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  flex-shrink: 0;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.voyago-brand-icon {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  color: var(--accent-ink);
+  background: linear-gradient(
+    145deg,
+    var(--accent),
+    var(--accent-strong)
+  );
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  border-radius: 13px;
+  box-shadow: 0 5px 22px
+    color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.voyago-brand-word {
+  font-family: "Manrope", sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -1.1px;
+}
+
+.voyago-brand-period {
+  color: var(--accent);
+}
+
+/* DESKTOP NAVIGATION */
+
+.voyago-desktop-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.voyago-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 39px;
+  padding: 0 10px;
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.voyago-nav-link:hover {
+  color: var(--text);
+  background: var(--surface-secondary);
+}
+
+.voyago-nav-link.active {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 20%, var(--border));
+}
+
+.voyago-nav-link.active::after {
+  position: absolute;
+  right: 12px;
+  bottom: -1px;
+  left: 12px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 999px;
+  content: "";
+}
+
+/* ACCOUNT ACTIONS */
+
+.voyago-desktop-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.voyago-logout,
+.voyago-login,
+.voyago-get-started {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 41px;
+  padding: 0 14px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.voyago-logout:hover,
+.voyago-login:hover {
+  color: var(--text);
+  background: var(--surface-hover);
+  border-color: var(--border-light);
+}
+
+.voyago-get-started {
+  color: var(--button-text);
+  background: var(--button-bg);
+  border-color: transparent;
+}
+
+.voyago-get-started:hover {
+  color: var(--button-text);
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.voyago-avatar {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  place-items: center;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+/* FOCUS AND INTERACTION */
+
+.voyago-brand:focus-visible,
+.voyago-nav-link:focus-visible,
+.voyago-logout:focus-visible,
+.voyago-login:focus-visible,
+.voyago-get-started:focus-visible,
+.voyago-menu-toggle:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.voyago-logout:active,
+.voyago-login:active,
+.voyago-get-started:active,
+.voyago-menu-toggle:active {
+  transform: translateY(1px);
+}
+
+/* MOBILE CONTROLS */
+
+.voyago-menu-toggle,
+.voyago-mobile-panel {
+  display: none;
+}
+
+.voyago-mobile-section-label {
+  margin: 4px 0 8px;
+  color: var(--muted-dark);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.voyago-mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+}
+
+.voyago-mobile-user-name,
+.voyago-mobile-user-caption {
+  display: block;
+}
+
+.voyago-mobile-user-name {
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.voyago-mobile-user-caption {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.voyago-mobile-account {
+  display: grid;
+  gap: 13px;
+  padding-top: 15px;
+  border-top: 1px solid var(--border);
+}
+
+.voyago-mobile-logout,
+.voyago-mobile-auth > * {
+  width: 100%;
+}
+
+.voyago-mobile-auth {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* TABLET AND SMALL LAPTOP */
+
+@media (max-width: 1320px) {
+  .voyago-navbar-inner {
+    gap: 16px;
+  }
+
+  .voyago-desktop-links {
+    gap: 1px;
+  }
+
+  .voyago-nav-link {
+    padding-inline: 7px;
+    font-size: 11px;
+  }
+
+  .voyago-desktop-actions {
+    gap: 7px;
+  }
+
+  .voyago-logout,
+  .voyago-login,
+  .voyago-get-started {
+    padding-inline: 10px;
+  }
+}
+
+/* MOBILE NAVIGATION */
+
+@media (max-width: 1050px) {
+  .voyago-navbar-inner {
+    width: calc(100% - 36px);
+    min-height: 68px;
+    justify-content: space-between;
+  }
+
+  .voyago-brand-word {
+    font-size: 20px;
+  }
+
+  .voyago-brand-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+  }
+
+  .voyago-desktop-links,
+  .voyago-desktop-actions {
+    display: none;
+  }
+
+  .voyago-menu-toggle {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    place-items: center;
+    padding: 0;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+      color 0.2s ease,
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .voyago-menu-toggle:hover {
+    color: var(--accent);
+    background: var(--surface-hover);
+    border-color: var(--border-light);
+  }
+
+  .voyago-mobile-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: calc(100dvh - 68px);
+    overflow-y: auto;
+    padding: 16px 22px 24px;
+    color: var(--text);
+    background: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 20px 40px var(--shadow);
+    animation: voyago-menu-enter 0.18s ease-out;
+  }
+
+  .voyago-mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .voyago-mobile-links .voyago-nav-link {
+    justify-content: flex-start;
+    min-height: 44px;
+    padding: 0 13px;
+    border-radius: 10px;
+    font-size: 13px;
+  }
+
+  .voyago-mobile-links .voyago-nav-link.active::after {
+    top: 10px;
+    right: auto;
+    bottom: 10px;
+    left: 0;
+    width: 3px;
+    height: auto;
+    border-radius: 999px;
+  }
+
+  .voyago-mobile-links .voyago-nav-link.active {
+    background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  }
+}
+
+/* SMALL PHONES */
+
+@media (max-width: 420px) {
+  .voyago-navbar-inner {
+    width: calc(100% - 28px);
+  }
+
+  .voyago-mobile-panel {
+    padding-inline: 16px;
+  }
+
+  .voyago-brand-word {
+    font-size: 19px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .voyago-navbar *,
+  .voyago-navbar *::before,
+  .voyago-navbar *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@keyframes voyago-menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* VOYAGO — Theme toggle visibility and styling */
+.voyago-desktop-actions .voyago-theme-toggle {
+    display: inline-grid;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    place-items: center;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.voyago-theme-toggle svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+.voyago-theme-toggle:hover {
+    color: #78aaff;
+    border-color: #4f8cff;
+    box-shadow: 0 0 18px rgba(79, 140, 255, 0.15);
+}
+
+.voyago-theme-toggle:focus-visible {
+    outline: 2px solid #78aaff;
+    outline-offset: 3px;
+}
+
+@media (max-width: 1050px) {
+    .voyago-desktop-actions {
+        display: none;
+    }
+
+    .voyago-mobile-top-actions .voyago-theme-toggle {
+        display: inline-grid;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
