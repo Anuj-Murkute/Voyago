@@ -7,8 +7,20 @@ import { savePlaceLocations } from "../services/api";
 // CONFIGURATION
 // --------------------------------------------------
 
-const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-const mapId = import.meta.env.VITE_GOOGLE_MAP_ID || "DEMO_MAP_ID";
+// --------------------------------------------------
+// GOOGLE MAPS CONFIGURATION
+// --------------------------------------------------
+
+const apiKey = (
+    import.meta.env.VITE_GOOGLE_MAPS_API_KEY ||
+    import.meta.env.VITE_GOOGLE_MAPS_KEY ||
+    ""
+).trim();
+
+const mapId = (
+    import.meta.env.VITE_GOOGLE_MAP_ID || "DEMO_MAP_ID"
+).trim();
+
 
 let googleLibrariesPromise = null;
 
@@ -65,23 +77,64 @@ if (typeof window !== "undefined" && typeof sessionStorage !== "undefined") {
 
 async function loadGoogleLibraries() {
     if (!apiKey) {
-        throw new Error("Google Maps API key is missing. Check client/.env.");
+        console.error(
+            "VOYAGO: Google Maps API key is missing from the frontend build.",
+            {
+                primaryVariableConfigured: Boolean(
+                    import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+                ),
+                alternateVariableConfigured: Boolean(
+                    import.meta.env.VITE_GOOGLE_MAPS_KEY
+                ),
+                productionHint:
+                    "Set VITE_GOOGLE_MAPS_API_KEY in Vercel and redeploy."
+            }
+        );
+
+        throw new Error(
+            "Google Maps API key is missing from the deployed frontend. " +
+            "Add VITE_GOOGLE_MAPS_API_KEY in Vercel → Settings → Environment Variables, " +
+            "select Production, and redeploy."
+        );
     }
 
     if (!googleLibrariesPromise) {
         googleLibrariesPromise = (async () => {
             try {
-                setOptions({ key: apiKey, v: "weekly" });
+                setOptions({
+                    key: apiKey,
+                    v: "weekly"
+                });
 
-                return await Promise.all([
+                const [
+                    mapsLibrary,
+                    markerLibrary,
+                    placesLibrary,
+                    routesLibrary,
+                    coreLibrary
+                ] = await Promise.all([
                     importLibrary("maps"),
                     importLibrary("marker"),
                     importLibrary("places"),
                     importLibrary("routes"),
-                    importLibrary("core"),
+                    importLibrary("core")
                 ]);
+
+                return [
+                    mapsLibrary,
+                    markerLibrary,
+                    placesLibrary,
+                    routesLibrary,
+                    coreLibrary
+                ];
             } catch (error) {
                 googleLibrariesPromise = null;
+
+                console.error(
+                    "VOYAGO: Google Maps libraries failed to load.",
+                    error
+                );
+
                 throw error;
             }
         })();
