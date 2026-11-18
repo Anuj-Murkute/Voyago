@@ -597,7 +597,7 @@ function TripMap({ tripId, destination, itinerary, selectedDay }) {
                             title: displayName,
                         });
 
-                        marker.addListener("click", () => {
+                        marker.addEventListener("gmp-click", () => {
                             if (cancelled) return;
 
                             const description = getActivityDescription(activity);
@@ -726,12 +726,16 @@ function TripMap({ tripId, destination, itinerary, selectedDay }) {
                 // Routes require at least two stops.
                 if (resolvedPlaces.length < 2) return;
 
-                const origin = resolvedPlaces[0].place;
+                // Routes API expects location values, not the complete
+                // custom Place wrapper objects used by VOYAGO's cache.
+                const origin = resolvedPlaces[0].place.location;
                 const finalDestination =
-                    resolvedPlaces[resolvedPlaces.length - 1].place;
+                    resolvedPlaces[resolvedPlaces.length - 1].place.location;
                 const intermediates = resolvedPlaces
                     .slice(1, -1)
-                    .map((item) => item.place);
+                    .map((item) => ({
+                        location: item.place.location,
+                    }));
 
                 const routeModes = [
                     {

@@ -1,24 +1,47 @@
+const DEFAULT_PRODUCTION_API_URL =
+  "https://voyago-uz0y.onrender.com/api";
 
+const DEFAULT_DEVELOPMENT_API_URL =
+  "http://localhost:5000/api";
+
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim();
+
+// Prevent localhost API URLs from being used in production.
 const API_URL = (
-  import.meta.env.VITE_API_URL || "https://voyago-uz0y.onrender.com/api"
+  import.meta.env.PROD
+    ? configuredApiUrl &&
+      !/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?(\/|$)/i.test(
+        configuredApiUrl
+      )
+      ? configuredApiUrl
+      : DEFAULT_PRODUCTION_API_URL
+    : configuredApiUrl || DEFAULT_DEVELOPMENT_API_URL
 ).replace(/\/$/, "");
 
 async function apiRequest(path, options = {}) {
   const { timeoutMs = 20000, ...fetchOptions } = options;
+
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+  const timeoutId = setTimeout(
+    () => controller.abort(),
+    timeoutMs
+  );
 
   try {
     const response = await fetch(`${API_URL}${path}`, {
       ...fetchOptions,
       signal: controller.signal,
       headers: {
-        ...(fetchOptions.body ? { "Content-Type": "application/json" } : {}),
+        ...(fetchOptions.body
+          ? { "Content-Type": "application/json" }
+          : {}),
         ...(fetchOptions.headers || {}),
       },
     });
 
     const rawBody = await response.text();
+
     let data = {};
 
     if (rawBody) {
@@ -26,7 +49,9 @@ async function apiRequest(path, options = {}) {
         data = JSON.parse(rawBody);
       } catch {
         if (response.ok) {
-          throw new Error("The server returned an unreadable response.");
+          throw new Error(
+            "The server returned an unreadable response."
+          );
         }
       }
     }
@@ -42,7 +67,9 @@ async function apiRequest(path, options = {}) {
         // Continue even if browser storage is unavailable.
       }
 
-      window.dispatchEvent(new Event("voyago:session-expired"));
+      window.dispatchEvent(
+        new Event("voyago:session-expired")
+      );
     }
 
     if (!response.ok) {
@@ -190,7 +217,11 @@ export const saveHotelLocations = (tripId, hotels, token) =>
     body: jsonBody({ hotels }),
   });
 
-export const saveRestaurantLocations = (tripId, restaurants, token) =>
+export const saveRestaurantLocations = (
+  tripId,
+  restaurants,
+  token
+) =>
   apiRequest(`/trips/${encodeURIComponent(tripId)}/restaurants`, {
     method: "PUT",
     headers: {
@@ -210,7 +241,6 @@ export const saveSelectedHotel = (tripId, hotel, token) =>
 
 // ================================================
 // ADMIN DASHBOARD
-// All admin endpoints require a valid admin token.
 // ================================================
 
 export const getAdminStats = (token) =>
